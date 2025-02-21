@@ -18,8 +18,8 @@ if(isset($_POST['submit'])){
         $mail->isSMTP();                                            //Send using SMTP
         $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'jogosteste15@gmail.com';                     //SMTP username
-        $mail->Password   = 'iqui flha dsre bhzt';                               //SMTP password
+        $mail->Username   = 'myemail';                     //SMTP username
+        $mail->Password   = 'mypassword';                               //SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
         $mail->Port       = 587;
         $mail->SMTPOptions = array(
@@ -33,7 +33,7 @@ if(isset($_POST['submit'])){
 
         //Recipients
         $mail->setFrom($_POST['email'], $_POST['name']);
-        $mail->addAddress('jogosteste15@gmail.com ', 'Admin');
+        $mail->addAddress('emailtosendmessage', 'Admin');
 
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
