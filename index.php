@@ -29,6 +29,7 @@ if(isset($_POST['submit'])){
                 'allow_self_signed' => true
             )
         );                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        $mail->CharSet = 'UTF-8';
 
         //Recipients
         $mail->setFrom($_POST['email'], $_POST['name']);
@@ -36,8 +37,8 @@ if(isset($_POST['submit'])){
 
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = 'Here is the subject';
-        $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+        $mail->Subject = $_POST['subject'];
+        $mail->Body    = $_POST['text'].'<br> Email: '.$_POST['email'].'<br> Name: '.$_POST['name'];
         $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
         $mail->send();
@@ -61,9 +62,10 @@ if(isset($_POST['submit'])){
 </head>
 <body>
     <form action="" method="post">
-        <input type="text" name="name" placeholder="Enter your name">
-        <input type="email" name="email" placeholder="Enter your email">
-        <input type="text" name="text" placeholder="Enter your texto">
+        <input type="text" name="name" placeholder="Enter your name" required>
+        <input type="text" name="subject" placeholder="Enter your subject" required>
+        <input type="email" name="email" placeholder="Enter your email" required>
+        <input type="text" name="text" placeholder="Enter your texto" required>
         <input type="submit" name="submit" value="Submit">
     </form>
 </body>
